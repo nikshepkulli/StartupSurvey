@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Startup Team Introduction & Survey</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Meet the Team</h1>
+      <ul>
+        <li><strong>CEO:</strong> {{ team.ceo.name }}</li>
+        <li><strong>CTO:</strong> {{ team.cto.name }}</li>
+        <li><strong>CFO:</strong> {{ team.cfo.name }}</li>
+        <li>
+          <strong>Board Members:</strong>
+          <ul>
+            {% for member in team.board_members %}
+            <li>{{ member.name }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <h1>Business Problem Survey</h1>
+      <form action="/survey" method="post">
+        <label for="problem"
+          >What business problem are you facing in your daily operations?</label
+        ><br />
+        <textarea id="problem" name="problem" rows="4" cols="50"></textarea
+        ><br />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>
